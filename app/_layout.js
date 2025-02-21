@@ -5,7 +5,7 @@ import { AboutIcon } from "../components/Icons";
 
 export default function Layout() {
   return (
-    <View className="flex-1 bg-black">
+    <View className="bg-black flex-1">
       <Stack
         screenOptions={{
           headerStyle: { backgroundColor: "black" },
