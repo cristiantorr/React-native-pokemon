@@ -64,6 +64,6 @@ const styles = StyleSheet.create({
     width: 100, // Ancho de la imagen
     height: 100, // Alto de la imagen (debe ser igual al ancho)
     borderRadius: 50, // Hace que la imagen sea redonda
-    resizeMode: "cover",
+    resizeMode: "contain",
   },
 });
