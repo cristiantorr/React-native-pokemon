@@ -1,5 +1,5 @@
-import React from "react";
-import { Image, View } from "react-native";
+import { View, Modal, Text, TouchableOpacity, Image } from "react-native";
+import { useState, React } from "react";
 
 const characterUrl = {
   "nombre-1": require("../assets/characters/nombre-1.png"),
@@ -38,22 +38,58 @@ const characterUrl = {
 export const CharacterCard = (props) => {
   // Asegurarse de que props.image sea un número
   const imageNumber = `${props.image}`;
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
+  // Funciones para abrir y cerrar el modal
+  const openModal = () => setIsModalVisible(true);
+  const closeModal = () => setIsModalVisible(false);
   return (
     <View className="flex-row gap-4 border-2 border-gray-400  mb-4bg-gray-200 rounded-full p-3">
-      <Image
-        source={
-          characterUrl[imageNumber]
-            ? characterUrl[imageNumber]
-            : require("../assets/characters/nombre-1.png") // Imagen por defecto
-        }
-        style={{
-          width: 80,
-          height: 80,
-          resizeMode: "contain",
-          position: "relative",
-        }}
-      />
+      <TouchableOpacity className="" onPress={openModal}>
+        <Image
+          source={
+            characterUrl[imageNumber]
+              ? characterUrl[imageNumber]
+              : require("../assets/characters/nombre-1.png") // Imagen por defecto
+          }
+          style={{
+            width: 80,
+            height: 80,
+            resizeMode: "contain",
+            position: "relative",
+          }}
+        />
+      </TouchableOpacity>
+
+      {/* Modal */}
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={isModalVisible}
+        onRequestClose={closeModal}
+      >
+        <View className="flex-1 justify-center items-center bg-black bg-opacity-50 justify-center">
+          <Image
+            source={
+              characterUrl[imageNumber]
+                ? characterUrl[imageNumber]
+                : require("../assets/characters/nombre-1.png") // Imagen por defecto
+            }
+            style={{
+              resizeMode: "cover",
+              position: "relative",
+            }}
+          />
+
+          {/* Botón para cerrar el modal */}
+          <TouchableOpacity
+            className="bg-gray-400 px-4 py-2 w-10 h-10 mt-10 rounded-full"
+            onPress={closeModal}
+          >
+            <Text className="text-white">X</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
     </View>
   );
 };

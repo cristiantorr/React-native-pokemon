@@ -6,14 +6,14 @@ export default function about() {
   return (
     <Screen>
       <ScrollView className="px-4">
-        <Link asChild href="/">
+        {/*  <Link asChild href="/">
           <Pressable>
             {({ pressed }) => (
               <HomeIcon style={{ opacity: pressed ? 0.5 : 1 }} />
             )}
           </Pressable>
-        </Link>
-        <Text className="text-white font-bold mb-8 text-2xl">
+        </Link> */}
+        <Text className="text-white font-bold mb-8 text-2xl text-center">
           La Aventura de Ash y Pikachu
         </Text>
         <Text className="text-white text-white/90 mb-4">
