@@ -39,7 +39,12 @@ export default function Detail() {
     for (let key in obj) {
       if (obj.hasOwnProperty(key)) {
         const value = obj[key];
-        if (value && typeof value === "string" && value.startsWith("http")) {
+        if (
+          value &&
+          typeof value === "string" &&
+          value.startsWith("http") &&
+          value.endsWith(".png")
+        ) {
           urls.push(value); // Si el valor es una URL, agregarla a la lista
         } else if (value && typeof value === "object") {
           urls.push(...extractImageUrls(value)); // Si es un objeto, hacer llamada recursiva
@@ -51,7 +56,7 @@ export default function Detail() {
   }
 
   // Llamar a la función con el objeto de sprites
-  const imageUrls = extractImageUrls(pokeinfo.sprites).slice(0, 10);
+  const imageUrls = extractImageUrls(pokeinfo.sprites).slice(0, 20);
 
   // URLs de las imágenes sprites de la api de pokemon
 
@@ -66,7 +71,7 @@ export default function Detail() {
           headerRight: () => {},
         }}
       />
-      <View>
+      <View className="mb-10">
         {pokeinfo === null ? (
           <ActivityIndicator color={"#fff"} size={"large"} />
         ) : (
@@ -123,17 +128,22 @@ export default function Detail() {
                     No se encontraron descripciones.
                   </Text>
                 )}
-
+                <Text className="text-white font-bold text-3xl uppercase text-center m-5">
+                  GALERÍA DEL POKEMÓN EN EL PASO DEL TIEMPO
+                </Text>
                 <View style={styles.container}>
                   <ScrollView
                     horizontal={true}
                     showsHorizontalScrollIndicator={false}
                   >
-                    {imageUrls.map((url, index) => (
-                      <View style={styles.card} key={index}>
-                        <Image source={{ uri: url }} style={styles.image} />
-                      </View>
-                    ))}
+                    {imageUrls.map(
+                      (url, index) =>
+                        url ? ( // Verificamos si la URL existe
+                          <View style={styles.card} key={index}>
+                            <Image source={{ uri: url }} style={styles.image} />
+                          </View>
+                        ) : null // Si no hay URL, no renderizamos nada
+                    )}
                   </ScrollView>
                 </View>
               </View>
@@ -148,7 +158,7 @@ export default function Detail() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 10,
     backgroundColor: "#333",
   },
 
@@ -160,8 +170,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   image: {
-    width: 200,
+    width: 150,
     height: 200,
     borderRadius: 8,
+    resizeMode: "contain",
   },
 });
