@@ -1,6 +1,5 @@
 import { Tabs } from "expo-router";
-import { View } from "react-native";
-import { HomeIcon, InfoIcon, AboutIcon } from "../../components/Icons";
+import { HomeIcon, AboutIcon, CharacterIcon } from "../../components/Icons";
 
 export default function TabsLayout() {
   return (
@@ -24,15 +23,22 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
+          title: "Inicio",
           tabBarIcon: ({ color }) => <HomeIcon color={color} />,
         }}
       ></Tabs.Screen>
       <Tabs.Screen
         name="about"
         options={{
-          title: "About",
+          title: "Historia",
           tabBarIcon: ({ color }) => <AboutIcon color={color} />,
+        }}
+      ></Tabs.Screen>
+      <Tabs.Screen
+        name="character"
+        options={{
+          title: "Personajes",
+          tabBarIcon: ({ color }) => <CharacterIcon color={color} />,
         }}
       ></Tabs.Screen>
 

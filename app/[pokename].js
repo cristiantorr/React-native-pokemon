@@ -62,7 +62,7 @@ export default function Detail() {
           headerStyle: { backgroundColor: "#ffee00" },
           headerTintColor: "black",
           headerLeft: () => {},
-          headerTitle: pokename,
+          headerTitle: pokename.charAt(0).toUpperCase() + pokename.slice(1),
           headerRight: () => {},
         }}
       />

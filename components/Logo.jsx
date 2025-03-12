@@ -4,6 +4,6 @@ import { Image, View, StyleSheet } from "react-native";
 export const Logo = (props) => (
   <Image
     source={require("../assets/logo.png")}
-    style={{ width: 200, height: 100 }}
+    style={{ width: "100%", height: "120", resizeMode: "contain" }}
   />
 );
